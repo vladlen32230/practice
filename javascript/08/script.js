@@ -119,10 +119,12 @@ function createTodoApp(title, ownership) {
 
     (function fetchData() {
         for (let [id, data] of Object.entries(localStorage)) {
-            data=JSON.parse(data);
-            if (id.startsWith('todoapp-') && data.ownership===ownership) {
-                todoItem=createTodoItem(data.name, data.done, id);
-                todoList.append(todoItem.item);
+            if (id.startsWith('todoapp-')) {
+                data=JSON.parse(data);
+                if (data.ownership===ownership) {
+                    todoItem=createTodoItem(data.name, data.done, id);
+                    todoList.append(todoItem.item);
+                }
             }
         }
     })();
