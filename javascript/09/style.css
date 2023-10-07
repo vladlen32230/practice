@@ -1,0 +1,49 @@
+body {
+    font-size: 24px;
+}
+
+.container {
+    display: flex;
+}
+
+.cards {
+    width: 900px;
+    height: fit-content;
+    display: grid;
+    gap: 10px;
+}
+
+.timer-check {
+    width: 20px;
+    height: 20px;
+}
+
+.start-game {
+    width: 200px;
+    height: 40px;
+    font-size: 24px;
+}
+
+.rows-columns-counter {
+    width: 60px;
+    height: 30px;
+    font-size: 24px;
+}
+
+.remaining-time {
+    font-size: 100px;
+    margin: 0;
+    padding: 0;
+}
+
+.status {
+    font-size: 100px;
+}
+
+.card {
+    background: white;    
+    font-size: 30px;
+    width: 75px;
+    height: 75px;
+    background: white;
+}
