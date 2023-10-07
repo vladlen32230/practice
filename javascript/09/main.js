@@ -4,7 +4,7 @@
     let interval=null;
 
     function createNumbersArray(count) {
-        chosen=new Set();
+        const chosen=new Set();
     
         while (count>0) {
             let number=Math.round(Math.random()*899+100);
@@ -30,15 +30,15 @@
         return arr;
     }
     
-    let cards=document.querySelector('.cards');
+    const cards=document.querySelector('.cards');
 
-    let input=document.querySelector('#counter');
+    const input=document.querySelector('#counter');
 
-    let status=document.querySelector('.status');
+    const status=document.querySelector('.status');
 
-    let remainingTime=document.querySelector('.remaining-time');
+    const remainingTime=document.querySelector('.remaining-time');
 
-    let timerCheck=document.querySelector('.timer-check')
+    const timerCheck=document.querySelector('.timer-check')
 
     function startGame() {
         clearTimeout(timer);
@@ -117,6 +117,6 @@
         }
     }
 
-    let start=document.querySelector('.start-game');
+    const start=document.querySelector('.start-game');
     start.addEventListener('click', startGame);
 })();
