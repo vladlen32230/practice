@@ -1,0 +1,35 @@
+th:hover {
+    cursor: pointer;
+}
+
+body {
+    display: flex;
+    font-size: 18px;
+    flex-wrap: wrap;
+}
+
+td {
+    border: 2px solid black;
+}
+
+.students {
+    border: 2px solid black;
+    margin: 20px;
+    height: fit-content;
+}
+
+.student-form {
+    border: 2px solid black;
+    margin: 20px;
+    height: fit-content;
+    padding: 5px;
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: auto;
+    margin: 20px;
+    border: 2px solid black;
+    height: fit-content;
+    padding: 5px;
+}

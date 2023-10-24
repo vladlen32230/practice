@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Список студентов</title>
+</head>
+
+<body>
+    <div class="filters">
+        <p>Фильтры:</p>
+        <label for="surname-filter">Фамилия: </label>
+        <input type="text" id="surname-filter" class="filter">
+        <label for="name-filter">Имя: </label>
+        <input type="text" id="name-filter" class="filter">
+        <label for="middlename-filter">Отчество: </label>
+        <input type="text" id="middlename-filter" class="filter">
+        <label for="faculty-filter">Факультет: </label>
+        <input type="text" id="faculty-filter" class="filter">
+        <label for="start-year-filter">Год начала обучения: </label>
+        <input type="number" id="start-year-filter" class="filter">
+        <label for="start-year-filter">Год окончания обучения: </label>
+        <input type="number" id="end-year-filter" class="filter">
+    </div>
+    <table class="students">
+        <tr>
+            <th class="surname-head" name="surname">Фамилия</th>
+            <th class="name-head" name="name">Имя</th>
+            <th class="middlename-head" name="middlename">Отчество</th>
+            <th class="faculty-head" name="faculty">Факультет</th>
+            <th class="birthday-head" name="birthdate">Дата рождения</th>
+            <th class="span-head" name="startDate">Годы обучения</th>
+        </tr>
+    </table>
+    <form class="student-form">
+        <p>Добавление студента</p>
+        <div>
+            <label for="surname-create">Фамилия: </label>
+            <input type="text" id="surname-create" name="surname">
+        </div>
+        <div>
+            <label for="name-create">Имя: </label>
+            <input type="text" id="name-create" name="name"></div>
+        </div>
+        <div>
+            <label for="middlename-create">Отчество: </label>
+            <input type="text" id="middlename-create" name="middlename">
+        </div>
+        <div>
+            <label for="birhday-create">Дата рождения: </label>
+            <input type="date" id="birhday-create" name="birthday">
+        </div>
+        <div>
+            <label for="faculty-create">Факультет: </label>
+            <input type="text" id="faculty-create" name="faculty"></div>
+        </div>
+        <div>
+            <label for="start-year-create">Год начала обучения: </label>
+            <input type="number" id="start-year-create" name="start">
+        </div>
+        <input type="submit" value="Добавить">
+    </form>
+    <script src="main.js"></script>
+</body>
+
+</html>
