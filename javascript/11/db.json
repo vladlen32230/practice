@@ -1,0 +1,22 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "surname": "Kudrin",
+      "name": "Vladislav",
+      "middlename": "Alekseevich",
+      "faculty": "IRIT-RTF",
+      "birthdate": "2004-09-03",
+      "startDate": "2022"
+    },
+    {
+      "name": "asdf",
+      "surname": "asdf",
+      "middlename": "asdf",
+      "birthdate": "2023-10-04",
+      "faculty": "asdf",
+      "startDate": 2005,
+      "id": "H1uVXLx"
+    }
+  ]
+}
