@@ -9,15 +9,44 @@
 </head>
 
 <body>
+
     <header>
-        <h1>Онлайн ресторан</h1>
-        <h2>Корзина</h2>
+        <div class="nav">
+            <h1>Онлайн ресторан</h1>
+            <h2 class="margin-left"><span class="cart-header">Корзина</span></h2>
+        </div>
+
+        <div class="cart" hidden>
+            <img src="img/cross.png" class="cart-close">
+            <table class="cart-table">
+                <th>Название</th>
+                <th>Количество</th>
+                <th>Стоимость</th>
+                <th>Удалить</th>
+            </table>
+            <p class="sum"></p>
+            <button>Оплатить</button>
+        </div>
     </header>
 
     <main>
-        <h2>Меню</h2>
+        <h2 class="menu-header">Меню</h2>
         <div class="filters">
-        
+            <input type="text" placeholder="Введите название" class="name-search">
+            <select class="category-select">
+                <option value="">Выберите категорию</option>>
+                <option value="Второе">Второе</option>
+                <option value="Суп">Суп</option>
+                <option value="Напиток">Напиток</option>
+                <option value="Мясное">Мясное</option>
+                <option value="Десерт">Десерт</option>
+                <option value="Основное">Основное</option>
+            </select>
+            <select class="price-select">
+                <option value="0">Выберите цену</option>>
+                <option value="-1">Сначала Дорогие</option>
+                <option value="1">Сначала Дешевые</option>
+            </select>
         </div>
 
         <div class="cards">
