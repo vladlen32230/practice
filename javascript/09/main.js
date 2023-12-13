@@ -93,7 +93,7 @@
 
         gameStarted=false;
 
-        status.textContent = 'Вы выиграли (:' ? win : status.textContent = 'Вы проиграли ):'
+        win ? status.textContent = 'Вы выиграли (:' : status.textContent = 'Вы проиграли ):'
     }
 
     const start=document.querySelector('.start-game');
