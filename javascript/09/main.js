@@ -4,30 +4,17 @@
     let interval=null;
 
     function createNumbersArray(count) {
-        const chosen=new Set();
+        const chosen=new Array();
     
-        while (count>0) {
-            let number=Math.round(Math.random()*899+100);
-            if (!chosen.has(number)) {
-                chosen.add(number);
-                count--;
-            }
+        for (let i = 1; i <= count; i++) {
+            chosen.push(i);
         }
     
-        return Array.from(chosen).concat(Array.from(chosen));
+        return chosen.concat(chosen);
     }
     
     function shuffle(arr) {
-        for (let index in arr) {
-            let randomIndex=Math.round(Math.random()*(arr.length-1));
-            if (randomIndex!==index) {
-                temp=arr[index];
-                arr[index]=arr[randomIndex];
-                arr[randomIndex]=temp;
-            }
-        }
-    
-        return arr;
+        return arr.sort(() => Math.random() - 0.5);
     }
     
     const cards=document.querySelector('.cards');
@@ -68,14 +55,14 @@
             button.classList.add('card');
             button.addEventListener('click', (e) => {
                 if (firstCard===button || secondCard===button || !gameStarted) {
-                    e.preventDefault();
+                    return;
                 } else if (firstCard===null) {
                     firstCard=button;
                     firstCard.textContent=number;
                 } else if (secondCard===null) {
                     secondCard=button;
+                    secondCard.textContent=number;
                     if (number===parseInt(firstCard.textContent)) {
-                        secondCard.textContent=number;
                         secondCard.disabled=true;
                         firstCard.disabled=true;
                         firstCard=null;
@@ -84,11 +71,7 @@
                         if (count===0) {
                             endGame(true);
                         }
-
-                    } else {
-                        secondCard.textContent=number;
                     }
-
                 } else {
                     firstCard.textContent='';
                     firstCard=button;
@@ -110,11 +93,7 @@
 
         gameStarted=false;
 
-        if (win) {
-            status.textContent='Вы выиграли (:';
-        } else {
-            status.textContent='Вы проиграли ):';
-        }
+        status.textContent = 'Вы выиграли (:' ? win : status.textContent = 'Вы проиграли ):'
     }
 
     const start=document.querySelector('.start-game');

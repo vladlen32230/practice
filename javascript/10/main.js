@@ -59,8 +59,20 @@ function getStudentItem(studentObj) {
     faculty.textContent=studentObj.faculty;
     row.append(faculty);
 
+    console.log(studentObj.birthdate);
     const birthdate=document.createElement('td');
-    birthdate.textContent=`${studentObj.birthdate.toISOString().split('T')[0]} (${(new Date().getFullYear()-studentObj.birthdate.getFullYear())} лет)`;
+    const age = `${studentObj.birthdate.toISOString().split('T')[0]} (${(new Date().getFullYear()-studentObj.birthdate.getFullYear())})`;
+    switch (age % 10) {
+        case 1:
+            birthdate.textContent = age + ' год';
+            break;
+        case 2 || 3 || 4:
+            birthdate.textContent = age + ' года';
+            break;
+        default:
+            birthdate.textContent = age + ' лет';
+    }
+
     row.append(birthdate);
 
     const span=document.createElement('td');

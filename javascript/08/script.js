@@ -1,10 +1,10 @@
 function createTodoApp(title, ownership) {
     function createTodoItemForm() {
-        let form=document.createElement('form');
-        let input=document.createElement('input');
-        let buttonWrapper=document.createElement('div');
-        let button=document.createElement('button');
-        let titleHead=document.createElement('h2');
+        const form=document.createElement('form');
+        const input=document.createElement('input');
+        const buttonWrapper=document.createElement('div');
+        const button=document.createElement('button');
+        const titleHead=document.createElement('h2');
 
         titleHead.textContent=title;
         form.classList.add('input-group', 'mb-3');
@@ -19,6 +19,8 @@ function createTodoApp(title, ownership) {
         form.append(input);
         form.append(buttonWrapper);
 
+        localStorage.getItem(ownership) == null && localStorage.setItem(ownership, JSON.stringify({}));
+
         return {
             titleHead,
             form,
@@ -29,23 +31,17 @@ function createTodoApp(title, ownership) {
     
 
     function createTodoList() {
-        let list=document.createElement('ul');
+        const list=document.createElement('ul');
         list.classList.add('list-group');
         return list;
     }
 
-    let container=document.querySelector('#todo-app');
+    const container=document.querySelector('#todo-app');
 
-    let todoItemForm=createTodoItemForm();
-    let todoList=createTodoList();
+    const todoItemForm=createTodoItemForm();
+    const todoList=createTodoList();
 
-    todoItemForm.input.addEventListener('input', function() {
-        if (todoItemForm.input.value.length===0) {
-            todoItemForm.button.disabled=true;
-        } else {
-            todoItemForm.button.disabled=false;
-        }
-    });
+    todoItemForm.input.addEventListener('input', () => todoItemForm.button.disabled = todoItemForm.input.value.length === 0);
 
     container.append(todoItemForm.titleHead);
     container.append(todoItemForm.form);
@@ -53,13 +49,13 @@ function createTodoApp(title, ownership) {
 
     function createTodoItem(name, done=false, id=null) {
         if (id===null) {
-            id='todoapp-'+Math.random().toString(16).slice(2);
+            id=Math.random().toString(16).slice(2);
         }
 
-        let item=document.createElement('li');
-        let buttonGroup=document.createElement('div');
-        let doneButton=document.createElement('button');
-        let deleteButton=document.createElement('button');
+        const item=document.createElement('li');
+        const buttonGroup=document.createElement('div');
+        const doneButton=document.createElement('button');
+        const deleteButton=document.createElement('button');
 
         item.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
         item.textContent=name;
@@ -80,15 +76,17 @@ function createTodoApp(title, ownership) {
 
         doneButton.addEventListener('click', function() {
             item.classList.toggle('list-group-item-success');
-            let obj=JSON.parse(localStorage.getItem(id));
-            obj.done=!obj.done;
-            localStorage.setItem(id, JSON.stringify(obj));
+            const todos = JSON.parse(localStorage.getItem(ownership));
+            todos[id].done = !todos[id].done;
+            localStorage.setItem(ownership, JSON.stringify(todos));
         });
 
         deleteButton.addEventListener('click', function() {
             if (confirm('Вы уверены?')) {
                 item.remove(); 
-                localStorage.removeItem(id);
+                const todos = JSON.parse(localStorage.getItem(ownership));
+                delete todos[id];
+                localStorage.setItem(ownership, JSON.stringify(todos));
             }
         });
 
@@ -105,12 +103,14 @@ function createTodoApp(title, ownership) {
             return;
         }
 
-        let todoItem=createTodoItem(todoItemForm.input.value, false, null);
-        localStorage.setItem(todoItem.id, JSON.stringify({
+        const todoItem=createTodoItem(todoItemForm.input.value, false, null);
+        const todos = JSON.parse(localStorage.getItem(ownership));
+        todos[todoItem.id] = {
             name: todoItem.name,
-            done: false,
-            ownership,
-        }));
+            done: false
+        };
+
+        localStorage.setItem(ownership, JSON.stringify(todos));
 
         todoList.append(todoItem.item);
 
@@ -118,14 +118,10 @@ function createTodoApp(title, ownership) {
     });
 
     (function fetchData() {
-        for (let [id, data] of Object.entries(localStorage)) {
-            if (id.startsWith('todoapp-')) {
-                data=JSON.parse(data);
-                if (data.ownership===ownership) {
-                    todoItem=createTodoItem(data.name, data.done, id);
-                    todoList.append(todoItem.item);
-                }
-            }
+        const todos = JSON.parse(localStorage.getItem(ownership));
+        for (const [id, data] of Object.entries(todos)) {
+            const todoItem = createTodoItem(data.name, data.done, id);
+            todoList.append(todoItem.item);
         }
     })();
 };
